@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>はてブ・ミュート - 動作テストページ</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    h1 {
+      color: #333;
+      border-bottom: 3px solid #4CAF50;
+      padding-bottom: 10px;
+    }
+    
+    .info {
+      background-color: #e3f2fd;
+      border-left: 4px solid #2196F3;
+      padding: 15px;
+      margin: 20px 0;
+    }
+    
+    .success {
+      background-color: #d4edda;
+      border-left: 4px solid #4CAF50;
+      padding: 15px;
+      margin: 20px 0;
+    }
+    
+    .warning {
+      background-color: #fff3cd;
+      border-left: 4px solid #ffc107;
+      padding: 15px;
+      margin: 20px 0;
+    }
+    
+    .code {
+      background-color: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 10px;
+      font-family: 'Courier New', monospace;
+      white-space: pre-wrap;
+      margin: 10px 0;
+    }
+    
+    .section {
+      background-color: white;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    h2 {
+      color: #4CAF50;
+      margin-top: 0;
+    }
+    
+    ul {
+      line-height: 1.8;
+    }
+    
+    .step {
+      margin: 15px 0;
+      padding-left: 20px;
+    }
+    
+    .step::before {
+      content: "✓ ";
+      color: #4CAF50;
+      font-weight: bold;
+      margin-left: -20px;
+      margin-right: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>🚫 はてブ・ミュート - 動作確認ガイド</h1>
+  
+  <div class="info">
+    <strong>📌 このページについて</strong><br>
+    このページは、はてブ・ミュート拡張機能の動作を確認するためのガイドです。<br>
+    拡張機能のテストには実際のはてなブックマークサイトを使用してください。
+  </div>
+
+  <div class="section">
+    <h2>🔧 インストール確認</h2>
+    
+    <div class="step">Firefoxのツールバーに 🚫 アイコンが表示されている</div>
+    <div class="step">アイコンをクリックするとポップアップが開く</div>
+    <div class="step">ポップアップに「はてブ・ミュート設定」と表示される</div>
+    
+    <div class="warning">
+      <strong>⚠️ アイコンが表示されない場合</strong><br>
+      <code>about:addons</code> で拡張機能が有効になっているか確認してください。
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🧪 動作テスト手順</h2>
+    
+    <h3>準備:</h3>
+    <ol>
+      <li>はてなブックマークを開く: <a href="https://b.hatena.ne.jp/" target="_blank">https://b.hatena.ne.jp/</a></li>
+      <li>ブラウザコンソールを開く (F12キー)</li>
+    </ol>
+    
+    <h3>テスト1: 基本的なフィルタリング</h3>
+    <ol>
+      <li>はてなブックマークに表示されている記事のドメインを1つメモする</li>
+      <li>拡張機能のポップアップを開く</li>
+      <li>メモしたドメインをテキストエリアに入力 (例: <code>qiita.com</code>)</li>
+      <li>「保存」ボタンをクリック</li>
+      <li>該当ドメインの記事が即座に非表示になることを確認</li>
+    </ol>
+    
+    <h3>テスト2: 複数ドメインのフィルタリング</h3>
+    <div class="code">qiita.com
+zenn.dev
+github.com</div>
+    <ol>
+      <li>複数のドメインを改行区切りで入力</li>
+      <li>「保存」をクリック</li>
+      <li>すべての該当ドメインが非表示になることを確認</li>
+    </ol>
+    
+    <h3>テスト3: コンソールログの確認</h3>
+    <div class="code">[Hatebu Mute] NGリスト: ["qiita.com", "zenn.dev"]
+[Hatebu Mute] 記事数: 50
+[Hatebu Mute] 15件の記事を非表示にしました</div>
+    <p>コンソールに上記のようなログが表示されることを確認してください。</p>
+    
+    <h3>テスト4: リアルタイム更新</h3>
+    <ol>
+      <li>はてなブックマークを開いたまま</li>
+      <li>ポップアップでNGリストを変更</li>
+      <li>「保存」をクリック</li>
+      <li><strong>ページをリロードせずに</strong>フィルタリングが更新されることを確認</li>
+    </ol>
+    
+    <h3>テスト5: クリア機能</h3>
+    <ol>
+      <li>「クリア」ボタンをクリック</li>
+      <li>確認ダイアログで「OK」</li>
+      <li>すべての記事が再表示されることを確認</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h2>✅ 期待される動作</h2>
+    
+    <div class="success">
+      <strong>正常に動作している場合:</strong>
+      <ul>
+        <li>✓ NGドメインを保存するとステータスメッセージが表示される</li>
+        <li>✓ 該当ドメインの記事が即座に非表示になる</li>
+        <li>✓ ページをリロードしても設定が保持される</li>
+        <li>✓ コンソールにエラーが表示されない</li>
+        <li>✓ 複数タブで同時に動作する</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🐛 トラブルシューティング</h2>
+    
+    <h3>記事が消えない場合:</h3>
+    <ul>
+      <li>ドメインの形式を確認 (例: <code>qiita.com</code> が正しい、<code>https://qiita.com</code> は不要)</li>
+      <li>コンソールログを確認</li>
+      <li>ストレージ権限が有効か確認</li>
+    </ul>
+    
+    <h3>ポップアップが開かない場合:</h3>
+    <ul>
+      <li><code>about:debugging</code> で「検証」をクリックしてエラーを確認</li>
+      <li>拡張機能を再読み込み</li>
+    </ul>
+    
+    <h3>エラーが表示される場合:</h3>
+    <ul>
+      <li>Firefox のバージョンを確認 (109.0以上が必要)</li>
+      <li>すべてのファイルが正しく配置されているか確認</li>
+      <li><code>about:debugging</code> で拡張機能を再読み込み</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>📊 デバッグ情報</h2>
+    
+    <h3>ストレージの確認方法:</h3>
+    <ol>
+      <li>はてなブックマークのページで F12 を押す</li>
+      <li>「ストレージ」または「Storage」タブを選択</li>
+      <li>「拡張機能ストレージ」または「Extension Storage」を展開</li>
+      <li><code>ngDomains</code> キーに配列が保存されていることを確認</li>
+    </ol>
+    
+    <h3>Content Script の確認:</h3>
+    <div class="code">// コンソールで実行
+document.querySelectorAll('li.js-keyboard-selectable-item').length
+// → 記事数が表示される</div>
+  </div>
+
+  <div class="info">
+    <strong>💡 ヒント</strong><br>
+    開発中の場合、<code>web-ext run</code> コマンドを使用すると自動リロードが有効になり、
+    ファイルを編集するたびに拡張機能が自動的に再読み込みされます。
+  </div>
+
+  <div class="section">
+    <h2>📚 参考リンク</h2>
+    <ul>
+      <li><a href="https://b.hatena.ne.jp/" target="_blank">はてなブックマーク（テスト用）</a></li>
+      <li><a href="about:debugging" target="_blank">about:debugging（拡張機能管理）</a></li>
+      <li><a href="about:addons" target="_blank">about:addons（アドオン管理）</a></li>
+      <li><a href="https://developer.mozilla.org/ja/docs/Mozilla/Add-ons/WebExtensions" target="_blank">MDN - WebExtensions</a></li>
+    </ul>
+  </div>
+
+  <footer style="text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #666;">
+    <p>はてブ・ミュート (Hatebu Mute Extension) v1.0.0</p>
+    <p>MIT License</p>
+  </footer>
+</body>
+</html>
