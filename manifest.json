@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "はてブ・ミュート",
+  "version": "1.0.0",
+  "description": "はてなブックマークで特定のドメインを含む記事を非表示にする拡張機能",
+  
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "hatebu-mute-extension@example.com",
+      "strict_min_version": "109.0"
+    }
+  },
+  
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  
+  "host_permissions": [
+    "https://b.hatena.ne.jp/*"
+  ],
+  
+  "content_scripts": [
+    {
+      "matches": ["https://b.hatena.ne.jp/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icon48.svg"
+    },
+    "default_title": "はてブ・ミュート設定"
+  },
+  
+  "icons": {
+    "48": "icon48.svg",
+    "128": "icon128.svg"
+  }
+}
