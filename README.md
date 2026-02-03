@@ -1,0 +1,2 @@
+# hatebu-mute-extension
+Web版のはてなブックマークでサイトをミュートするFirefox向けの拡張機能
