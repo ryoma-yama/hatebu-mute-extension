@@ -23,6 +23,9 @@ async function filterArticles() {
     let removedCount = 0;
     
     // forEach と some を使った判定ロジック
+    // Note: innerHTML.includes() を使用しているため、記事タイトルやコメント内にドメイン文字列が
+    // 含まれる場合も削除される可能性があります。より正確なフィルタリングが必要な場合は、
+    // article.querySelector('a.js-keyboard-openable')?.href などを使用してください。
     articles.forEach((article) => {
       const innerHTML = article.innerHTML;
       

@@ -1,10 +1,8 @@
 {
   "manifest_version": 3,
   "name": "はてブ・ミュート",
-  "name__comment": "Hatebu Mute Extension",
   "version": "1.0.0",
   "description": "はてなブックマークで特定のドメインを含む記事を非表示にする拡張機能",
-  "description__comment": "Extension to hide articles from specific domains on Hatena Bookmark",
   
   "browser_specific_settings": {
     "gecko": {
