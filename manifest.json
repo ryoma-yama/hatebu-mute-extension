@@ -31,12 +31,13 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "48": "icon48.png"
+      "48": "icon48.svg"
     },
     "default_title": "はてブ・ミュート設定"
   },
   
   "icons": {
-    "48": "icon48.png"
+    "48": "icon48.svg",
+    "128": "icon128.svg"
   }
 }
